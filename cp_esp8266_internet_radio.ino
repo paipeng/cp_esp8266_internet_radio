@@ -23,11 +23,9 @@
 
 
 
-// Italian Rock Radio
-const char *URL="http://lhttp.qingting.fm/live/20024/64k.mp3";
 
 // Stream URL of Logitech Media Server, aka LMS, Version: 8.2.0 (August 2021)
-// const char *URL="http://192.168.1.121:9000/stream.mp3";
+const char *URL="http://192.168.1.228/mp3/snow.mp3";
 
 AudioGeneratorMP3 *mp3;
 AudioFileSourceICYStream *file;
