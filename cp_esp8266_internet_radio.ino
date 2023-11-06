@@ -24,7 +24,7 @@
 
 
 // Italian Rock Radio
-const char *URL="https://lhttp.qingting.fm/live/20024/64k.mp3";
+const char *URL="http://lhttp.qingting.fm/live/20024/64k.mp3";
 
 // Stream URL of Logitech Media Server, aka LMS, Version: 8.2.0 (August 2021)
 // const char *URL="http://192.168.1.121:9000/stream.mp3";
@@ -89,12 +89,12 @@ void setup() {
   file = new AudioFileSourceICYStream(URL);
 
   // Commented out for performance issues with high rate MP3 stream
-  //file->RegisterMetadataCB(MDCallback, (void*)"ICY");
+  file->RegisterMetadataCB(MDCallback, (void*)"ICY");
 
-  buff = new AudioFileSourceBuffer(file, 4096);	// Doubled form default 2048
+  buff = new AudioFileSourceBuffer(file, 8192);	// Doubled form default 2048
 
   // Commented out for performance issues with high rate MP3 stream
-  //buff->RegisterStatusCB(StatusCallback, (void*)"buffer");
+  buff->RegisterStatusCB(StatusCallback, (void*)"buffer");
 
   // Set SPDIF output
   out = new AudioOutputI2SNoDAC();
@@ -109,7 +109,6 @@ void setup() {
 
 void loop() {
   static int lastms = 0;
-
   if (mp3->isRunning()) {
     if (millis()-lastms > 1000) {
       lastms = millis();
